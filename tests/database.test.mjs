@@ -52,5 +52,10 @@ test('完整雙人流程、RLS、邀請與衝突控制',async()=>{
  // The unchanged migration can be rerun without losing data or opening permissions.
  await db.exec(await readFile(new URL('../supabase/schema.sql',import.meta.url),'utf8'));
  assert.equal((await asUser(users[1],'select * from households')).rows.length,1);
+ await asUser(users[0],"select public.update_settings('我們的基金',12000,15,37,'我')");
+ const updated=(await asUser(users[0],'select * from households')).rows[0];
+ assert.equal(updated.target,12000);assert.equal(updated.owner_share,37);
+ const original=(await asUser(users[1],"select * from entries where kind='opening'")).rows[0];
+ assert.equal(original.amount,3000,'修改充值比例不更動原有收支');
  await db.exec('set role anon');await assert.rejects(db.query('select * from entries'),/permission denied/);await db.exec('reset role');
 });
