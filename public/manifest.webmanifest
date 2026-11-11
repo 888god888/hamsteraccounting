@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "倉鼠小帳本 · 兩個人的伙食基金",
+  "short_name": "倉鼠小帳本",
+  "description": "每月補滿，一起好好吃飯。",
+  "lang": "zh-Hant-TW",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f6ef",
+  "theme_color": "#365b49",
+  "icons": [
+    { "src": "./assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
